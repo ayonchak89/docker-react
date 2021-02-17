@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ayonchakraborty/docker-react -f Dockerfile.dev .
+
+# Adding coverage tag to make sure Test Suite exits after execution
+script:
+  - docker run -e CI=true ayonchakraborty/docker-react npm run test -- --coverage
